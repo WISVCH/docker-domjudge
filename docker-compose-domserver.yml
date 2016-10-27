@@ -1,0 +1,16 @@
+version: '2'
+services:
+    domserver:
+        build: ./domserver
+        ports:
+            - "8080:80"
+        environment:
+            - DOMJUDGE_DB_PASSWORD=mysql_user_password
+            - DOMJUDGE_DB_ROOT_PASSWORD=mysql_root_password
+    db:
+        image: mariadb
+        volumes:
+            - ./db:/etc/mysql/conf.d
+            - /var/lib/containers/domjudge_db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=mysql_root_password
