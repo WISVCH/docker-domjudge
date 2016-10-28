@@ -24,8 +24,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
 	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php && \
 	mkdir /cgroup
 
-ADD start.sh /usr/local/bin/start.sh
-ADD restapi.secret /opt/domjudge/judgehost/etc/restapi.secret
+COPY start.sh /usr/local/bin/start.sh
+COPY restapi.secret /opt/domjudge/judgehost/etc/restapi.secret
 
 ENTRYPOINT ["start.sh"]
 CMD ["/opt/domjudge/judgehost/bin/judgedaemon"]

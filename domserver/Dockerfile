@@ -4,7 +4,7 @@ MAINTAINER Wim de With <nauxuron@wimdewith.com>
 
 ENV DOMJUDGE_VERSION 5.1.2
 
-ADD apache.conf.in /tmp/apache.conf.in
+COPY apache.conf.in /tmp/apache.conf.in
 
 RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
 		gcc g++ make zip unzip bsdmainutils  \
@@ -29,8 +29,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
 
 EXPOSE 80
 
-ADD start.sh /usr/local/bin/start.sh
-ADD apache2-foreground.sh /usr/local/bin/apache2-foreground.sh
+COPY start.sh /usr/local/bin/start.sh
+COPY apache2-foreground.sh /usr/local/bin/apache2-foreground.sh
 
 ENTRYPOINT ["start.sh"]
 CMD ["apache2-foreground.sh"]
