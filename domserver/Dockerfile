@@ -5,9 +5,10 @@ MAINTAINER Wim de With <nauxuron@wimdewith.com>
 ENV DOMJUDGE_VERSION 5.1.2
 
 COPY apache.conf.in /tmp/apache.conf.in
+COPY patches /tmp/patches
 
 RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
-		gcc g++ make zip unzip bsdmainutils  \
+		gcc g++ make zip unzip bsdmainutils patch \
 		linuxdoc-tools linuxdoc-tools-text \
 		groff texlive-latex-recommended texlive-latex-extra \
 		texlive-fonts-recommended texlive-lang-dutch curl autoconf automake" && \
@@ -19,6 +20,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
 	curl -L -o /src/domjudge-${DOMJUDGE_VERSION}.zip https://github.com/DOMjudge/domjudge/archive/${DOMJUDGE_VERSION}.zip && \
 	unzip /src/domjudge-${DOMJUDGE_VERSION}.zip -d /src && \
 	cd /src/domjudge-${DOMJUDGE_VERSION} && \
+	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
 	mv /tmp/apache.conf.in etc/apache.conf.in && \
 	make configure && /src/domjudge-${DOMJUDGE_VERSION}/configure --disable-submitclient && make domserver && make install-domserver && \
 	cd /opt/domjudge/domserver && \

@@ -30,3 +30,9 @@ password in `judgehost/restapi.secret`. You should also specify a hostname for
 this container to identify it in the domserver. If you want to support more
 programming languages, you need to edit `judgehost/Dockerfile` to download the
 packages.
+
+Patches
+-------
+
+You can customize the DOMjudge source by adding patches to the `patches`
+directories.
