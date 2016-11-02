@@ -8,13 +8,13 @@ COPY apache.conf.in /tmp/apache.conf.in
 COPY patches /tmp/patches
 
 RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
-		gcc g++ make zip unzip bsdmainutils patch \
+		gcc g++ make bsdmainutils patch \
 		linuxdoc-tools linuxdoc-tools-text \
 		groff texlive-latex-recommended texlive-latex-extra \
 		texlive-fonts-recommended texlive-lang-dutch curl autoconf automake" && \
 	export RUNDEPS="apache2 php5 php5-cli libapache2-mod-php5 \
 		php5-gd php5-curl php5-mysql php5-json \
-		ntp mysql-client ca-certificates" && \
+		ntp mysql-client ca-certificates unzip zip" && \
 	apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS $RUNDEPS && \
 	mkdir -p /src && \
 	curl -L -o /src/domjudge-${DOMJUDGE_VERSION}.zip https://github.com/DOMjudge/domjudge/archive/${DOMJUDGE_VERSION}.zip && \
