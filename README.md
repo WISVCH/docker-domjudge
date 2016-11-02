@@ -26,10 +26,10 @@ by setting `DOMJUDGE_DB_NAME` and `DOMJUDGE_DB_USER`.
 
 As for the judgehost, you need to run the container in privileged mode to use
 cgroups. You also need to specify the domserver URL and judgehost user and
-password in `judgehost/restapi.secret`. You should also specify a hostname for
-this container to identify it in the domserver. If you want to support more
-programming languages, you need to edit `judgehost/Dockerfile` to download the
-packages.
+password by setting `DOMSERVER_HOST`, `DOMSERVER_USER` and
+`DOMSERVER_PASSWORD`. You should also specify a hostname for this container to
+identify it in the domserver. If you want to support more programming
+languages, you need to edit `judgehost/Dockerfile` to download the packages.
 
 Patches
 -------

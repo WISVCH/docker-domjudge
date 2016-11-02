@@ -4,3 +4,5 @@ services:
         build: ./judgehost
         hostname: judgehost01
         privileged: true
+        environment:
+            - DOMSERVER_PASSWORD=password
