@@ -32,4 +32,8 @@ if ! /opt/domjudge/domserver/bin/dj-setup-database -u root -p"$DOMJUDGE_DB_ROOT_
 	/opt/domjudge/domserver/bin/dj-setup-database -u root -p"$DOMJUDGE_DB_ROOT_PASSWORD" install
 fi
 
+: "${TIMEZONE:=UTC}"
+
+printf "date.timezone=%s\n" $TIMEZONE > /etc/php5/apache2/conf.d/timezone.ini
+
 exec "$@"

@@ -7,6 +7,7 @@ services:
         environment:
             - DOMJUDGE_DB_PASSWORD=mysql_user_password
             - DOMJUDGE_DB_ROOT_PASSWORD=mysql_root_password
+            - TIMEZONE=Europe/Amsterdam
     db:
         image: mariadb
         volumes:

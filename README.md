@@ -24,6 +24,8 @@ case, you need to specify the `DOMJUDGE_DB_HOST` variable. It is also possible
 to specify a database name and domjudge user name (both default to `domjudge`)
 by setting `DOMJUDGE_DB_NAME` and `DOMJUDGE_DB_USER`.
 
+You can also specify a timezone by setting the `TIMEZONE` variable.
+
 As for the judgehost, you need to run the container in privileged mode to use
 cgroups. You also need to specify the domserver URL and judgehost user and
 password by setting `DOMSERVER_HOST`, `DOMSERVER_USER` and
