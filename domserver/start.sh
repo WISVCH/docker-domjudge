@@ -5,7 +5,7 @@ set -e
 : "${DOMJUDGE_DB_USER:=domjudge}"
 : "${DOMJUDGE_DB_NAME:=domjudge}"
 
-printf "Using DOMJUDGE_DB_HOST=%s, DOMJUDGE_DB_USER=%s, DOMJUDGE_DB_NAME=%s\n" $DOMJUDGE_DB_HOST $DOMJUDGE_DB_USER $DOMJUDGE_DB_NAME
+printf "Using\n\tDOMJUDGE_DB_HOST=%s\n\tDOMJUDGE_DB_USER=%s\n\tDOMJUDGE_DB_NAME=%s\n" $DOMJUDGE_DB_HOST $DOMJUDGE_DB_USER $DOMJUDGE_DB_NAME
 
 if [ -z "$DOMJUDGE_DB_PASSWORD" ]; then
 	echo >&2 "Error: missing DOMJUDGE_DB_PASSWORD environment variable"
