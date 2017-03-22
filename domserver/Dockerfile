@@ -20,8 +20,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
 	curl -L -o /src/domjudge-${DOMJUDGE_VERSION}.zip https://github.com/DOMjudge/domjudge/archive/${DOMJUDGE_VERSION}.zip && \
 	unzip /src/domjudge-${DOMJUDGE_VERSION}.zip -d /src && \
 	cd /src/domjudge-${DOMJUDGE_VERSION} && \
-	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
 	mv /tmp/apache.conf.in etc/apache.conf.in && \
+	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
 	make configure && /src/domjudge-${DOMJUDGE_VERSION}/configure --disable-submitclient && make domserver && make install-domserver && \
 	cd /opt/domjudge/domserver && \
 	rm -rf /src && \
