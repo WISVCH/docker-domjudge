@@ -35,7 +35,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	cd /opt/domjudge/domserver && \
 	chgrp -R www-data /opt/domjudge && chmod -R g+w /opt/domjudge && \
 	cp /opt/domjudge/domserver/etc/apache.conf /etc/apache2/sites-available/domjudge.conf && \
-	a2enmod rewrite && a2dissite 000-default && a2ensite domjudge
+	a2enmod rewrite && a2dissite 000-default && a2ensite domjudge && a2enmod remoteip
 
 EXPOSE 80
 
