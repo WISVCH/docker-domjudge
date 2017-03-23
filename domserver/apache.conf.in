@@ -9,6 +9,9 @@
 DocumentRoot @domserver_wwwdir@
 RedirectMatch ^/api$ /api/
 Alias /api @domserver_wwwdir@/api/index.php
+
+RemoteIPHeader X-Forwarded-For
+RemoteIPInternalProxy main.chipcie
 </VirtualHost>
 
 ### General options ###
