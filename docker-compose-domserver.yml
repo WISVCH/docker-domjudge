@@ -15,3 +15,11 @@ services:
             - /var/lib/containers/domjudge_db:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=mysql_root_password
+    phpmyadmin:
+        restart: always
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "8081:80"
+        environment:
+            - PMA_HOST=db
+            - PMA_ABSOLUTE_URI=https://chipcie.ch.tudelft.nl/phpmyadmin
