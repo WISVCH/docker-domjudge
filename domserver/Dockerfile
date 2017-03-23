@@ -36,7 +36,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* && \
 	cd /opt/domjudge/domserver && \
 	chgrp -R www-data /opt/domjudge && chmod -R g+w /opt/domjudge && \
-	cp /opt/domjudge/domserver/etc/apache.conf /etc/apache2/sites-available/domjudge.conf && a2dissite 000-default && a2ensite domjudge
+	cp /opt/domjudge/domserver/etc/apache.conf /etc/apache2/sites-available/domjudge.conf && a2dissite 000-default && a2ensite domjudge && a2enmod remoteip
 
 EXPOSE 80
 
