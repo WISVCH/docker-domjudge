@@ -17,6 +17,9 @@ TransferLog /dev/stdout
 <VirtualHost *>
 ServerName _default_
 DocumentRoot @domserver_webappdir@/web
+
+RemoteIPHeader X-Forwarded-For
+RemoteIPInternalProxy main.chipcie
 </VirtualHost>
 
 ### General options ###
