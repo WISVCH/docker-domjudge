@@ -6,4 +6,5 @@ services:
         cap_add:
             - SYS_ADMIN
         environment:
+            - DOMSERVER_HOST=https://chipcie.ch.tudelft.nl/api
             - DOMSERVER_PASSWORD=password
