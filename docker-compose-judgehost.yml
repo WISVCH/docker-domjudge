@@ -5,4 +5,5 @@ services:
         hostname: judgehost01
         privileged: true
         environment:
+            - DOMSERVER_HOST=https://chipcie.ch.tudelft.nl/api
             - DOMSERVER_PASSWORD=password
