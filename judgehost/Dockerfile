@@ -1,7 +1,5 @@
 FROM debian:stretch
 
-MAINTAINER Wim de With <nauxuron@wimdewith.com>
-
 ENV DOMJUDGE_VERSION 5.1.3
 
 COPY patches /tmp/patches

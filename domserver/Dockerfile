@@ -1,7 +1,5 @@
 FROM debian:jessie
 
-MAINTAINER Wim de With <nauxuron@wimdewith.com>
-
 ENV DOMJUDGE_VERSION 5.1.3
 
 COPY apache.conf.in /tmp/apache.conf.in
