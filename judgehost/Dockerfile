@@ -5,8 +5,8 @@ ENV DOMJUDGE_VERSION 5.1.3
 COPY patches /tmp/patches
 
 RUN export DEBIAN_FRONTEND=noninteractive && export BUILDDEPS="\
-		make curl autoconf automake patch" && \
-	export RUNDEPS="unzip php7.0-cli php7.0-curl php7.0-json procps sudo \
+		make autoconf automake patch" && \
+	export RUNDEPS="curl unzip php7.0-cli php7.0-curl php7.0-json procps sudo \
 		gcc g++ openjdk-8-jre-headless openjdk-8-jdk-headless \
 		fp-compiler ghc ca-certificates libcgroup-dev python python3" && \
 	apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS $RUNDEPS && \
