@@ -24,7 +24,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 
 FROM debian:stretch
 
-ENV RUNDEPS "unzip php-cli php-curl php-json procps sudo ca-certificates libcgroup-dev"
+ENV RUNDEPS "curl unzip php-cli php-curl php-json procps sudo ca-certificates libcgroup-dev"
 
 COPY languages /tmp/languages
 

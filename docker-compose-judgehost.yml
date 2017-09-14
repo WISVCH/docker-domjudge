@@ -2,7 +2,6 @@ version: '3'
 services:
     judgehost:
         build: ./judgehost
-        hostname: judgehost01
         privileged: true
         env_file:
             - judgehost.env
