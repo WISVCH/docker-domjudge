@@ -31,7 +31,9 @@ cgroups. You also need to specify the domserver URL and judgehost user and
 password by setting `DOMSERVER_HOST`, `DOMSERVER_USER` and
 `DOMSERVER_PASSWORD`. You should also specify a hostname for this container to
 identify it in the domserver. If you want to support more programming
-languages, you need to edit `judgehost/Dockerfile` to download the packages.
+languages, you need to edit `judgehost/Dockerfile` to download the packages. You
+also need to specify the following kernel parameters for cgroups:
+`cgroup_enable=memory swapaccount=1`.
 
 Patches
 -------
