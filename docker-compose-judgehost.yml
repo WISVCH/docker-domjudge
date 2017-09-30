@@ -3,7 +3,6 @@ services:
     judgehost:
         build: ./judgehost
         hostname: judgehost01
-        cap_add:
-            - SYS_ADMIN
+        privileged: true
         environment:
             - DOMSERVER_PASSWORD=password
