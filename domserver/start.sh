@@ -30,7 +30,7 @@ if ! /opt/domjudge/domserver/bin/dj-setup-database -u $DOMJUDGE_DB_USER -p"$DOMJ
 		echo >&2 "This is only needed to setup the database once"
 		exit 1
 	fi
-	/opt/domjudge/domserver/bin/dj-setup-database -u root -p"$DOMJUDGE_DB_ROOT_PASSWORD" install
+	/opt/domjudge/domserver/bin/dj-setup-database -u root -p"$DOMJUDGE_DB_ROOT_PASSWORD" bare-install
 fi
 
 : "${TIMEZONE:=UTC}"
