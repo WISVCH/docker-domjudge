@@ -1,32 +1,35 @@
-FROM debian:jessie as build
+FROM debian:stretch as build
 
-ENV DOMJUDGE_VERSION 5.1.3
+ENV DOMJUDGE_VERSION 5.2.0
 
 ENV BUILDDEPS "gcc g++ make bsdmainutils patch unzip zip \
-	linuxdoc-tools linuxdoc-tools-text ca-certificates \
-	groff texlive-latex-recommended texlive-latex-extra \
-	texlive-fonts-recommended texlive-lang-dutch curl autoconf automake"
+	ca-certificates curl autoconf automake libcgroup-dev \
+	php php-cli php-curl php-gmp php-mcrypt php-mysql php-mbstring"
 
 COPY apache.conf.in /tmp/apache.conf.in
 COPY patches /tmp/patches
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS && \
+	cd /tmp && \
+	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+	php composer-setup.php --filename=composer && \
 	mkdir -p /src && \
 	curl -L -o /src/domjudge-${DOMJUDGE_VERSION}.zip https://github.com/DOMjudge/domjudge/archive/${DOMJUDGE_VERSION}.zip && \
 	unzip /src/domjudge-${DOMJUDGE_VERSION}.zip -d /src && \
 	cd /src/domjudge-${DOMJUDGE_VERSION} && \
 	mv /tmp/apache.conf.in etc/apache.conf.in && \
 	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
-	make configure && /src/domjudge-${DOMJUDGE_VERSION}/configure --disable-submitclient && make domserver && make install-domserver
+	/tmp/composer install --no-dev && \
+	make configure && /src/domjudge-${DOMJUDGE_VERSION}/configure --disable-submitclient --disable-doc-build && make domserver && make install-domserver
 
-FROM debian:jessie
+FROM debian:stretch
 
 COPY --from=build /opt/domjudge /opt/domjudge
 
-ENV RUNDEPS "apache2 php5 php5-cli libapache2-mod-php5 \
-	php5-gd php5-curl php5-mysql php5-json \
-	ntp mysql-client ca-certificates unzip zip"
+ENV RUNDEPS "apache2 php php-cli libapache2-mod-php \
+	php-gd php-curl php-mysql php-json php-mbstring \
+	php-zip ntp mysql-client ca-certificates unzip zip"
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y --no-install-recommends $RUNDEPS && \

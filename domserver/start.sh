@@ -23,18 +23,18 @@ done
 exec 6>&-
 exec 6<&-
 
-sed -i 's/localhost/%/g' /opt/domjudge/domserver/bin/dj-setup-database
-if ! /opt/domjudge/domserver/bin/dj-setup-database -u $DOMJUDGE_DB_USER -p"$DOMJUDGE_DB_PASSWORD" status; then
+sed -i 's/localhost/%/g' /opt/domjudge/domserver/bin/dj_setup_database
+if ! /opt/domjudge/domserver/bin/dj_setup_database -u $DOMJUDGE_DB_USER -p"$DOMJUDGE_DB_PASSWORD" status; then
 	if [ -z "$DOMJUDGE_DB_ROOT_PASSWORD" ]; then
 		echo >&2 "Error: missing DOMJUDGE_DB_ROOT_PASSWORD environment variable"
 		echo >&2 "This is only needed to setup the database once"
 		exit 1
 	fi
-	/opt/domjudge/domserver/bin/dj-setup-database -u root -p"$DOMJUDGE_DB_ROOT_PASSWORD" bare-install
+	/opt/domjudge/domserver/bin/dj_setup_database -u root -p"$DOMJUDGE_DB_ROOT_PASSWORD" bare-install
 fi
 
 : "${TIMEZONE:=UTC}"
 
-printf "date.timezone=%s\n" $TIMEZONE > /etc/php5/apache2/conf.d/timezone.ini
+printf "date.timezone=%s\n" $TIMEZONE > /etc/php/7.0/apache2/conf.d/timezone.ini
 
 exec "$@"
