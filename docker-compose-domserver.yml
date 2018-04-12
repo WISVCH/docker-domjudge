@@ -4,11 +4,13 @@ services:
         build:
             context: ./domserver
             target: domserver
+        restart: always
         ports:
             - "8080:80"
         env_file:
             - domserver.env
     db:
+        restart: always
         image: mariadb
         volumes:
             - ./db:/etc/mysql/conf.d
