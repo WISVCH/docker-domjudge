@@ -1,6 +1,6 @@
 FROM debian:stretch as build
 
-ENV DOMJUDGE_VERSION 5.2.0
+ENV DOMJUDGE_VERSION 5.3.2
 
 ENV BUILDDEPS "gcc g++ make bsdmainutils patch unzip zip \
 	ca-certificates curl autoconf automake libcgroup-dev \
