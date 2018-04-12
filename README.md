@@ -15,6 +15,8 @@ Use Docker Compose to build the images:
 You may want to edit `domserver/apache.conf.in` to enable TLS or tweak the PHP
 upload restrictions.
 
+All environment variables can be set in the relevant `*.env` files.
+
 The domserver compose file comes bundled with a MariaDB container. If you want
 to use this, you only need to specify a password for the mysql root user and 
 for the domjudge user by setting `DOMJUDGE_DB_ROOT_PASSWORD` and
