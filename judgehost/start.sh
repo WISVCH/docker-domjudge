@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+export PATH="$PATH:$(paste -s -d ":" /opt/path)"
+
 : "${DOMSERVER_HOST:=http://domserver}"
 DOMSERVER_URL="${DOMSERVER_HOST}/api/v4"
 : "${DOMSERVER_USER:=judgehost}"

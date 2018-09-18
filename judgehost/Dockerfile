@@ -21,15 +21,13 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 
 FROM debian:stretch
 
-ENV RUNDEPS "unzip php-cli php-curl php-json procps sudo ca-certificates libcgroup-dev"
-
-COPY languages /tmp/languages
+ENV RUNDEPS "unzip curl php-cli php-curl php-json procps sudo ca-certificates libcgroup-dev"
 
 COPY --from=build /opt/domjudge /opt/domjudge
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends $RUNDEPS $(cat /tmp/languages) && \
+	apt-get install -y --no-install-recommends $RUNDEPS && \
 	apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* && \
 	groupadd -g 2000 domjudge && \
 	useradd -u 2000 -g 2000 -d / -s /bin/false domjudge && \
@@ -38,7 +36,14 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	chown -R domjudge judgings lib log run tmp && \
 	cp /opt/domjudge/judgehost/etc/sudoers-domjudge /etc/sudoers.d/ && \
 	chmod 440 /etc/sudoers.d/sudoers-domjudge && visudo -c && \
-	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php
+	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php && \
+	echo "/opt/domjudge/judgehost/bin" >> /opt/path
+
+COPY install_languages.sh /tmp/install_languages.sh
+COPY languages /tmp/languages
+
+RUN . /tmp/languages && /tmp/install_languages.sh && \
+	rm /tmp/install_languages.sh && rm /tmp/languages
 
 COPY start.sh /usr/local/bin/start.sh
 

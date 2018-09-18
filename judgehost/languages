@@ -1,7 +1,11 @@
-gcc
-g++
-openjdk-8-jdk-headless
-fp-compiler
-ghc
-python
-python3
+set -a
+
+LANG_C=yes
+LANG_CPP=yes
+LANG_JAVA=yes
+LANG_PY2=yes
+LANG_PY3=yes
+LANG_KOTLIN=yes
+
+LANG_HASKELL=no
+LANG_PASCAL=no

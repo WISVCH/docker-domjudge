@@ -17,6 +17,8 @@ upload restrictions.
 
 All environment variables can be set in the relevant `*.env` files.
 
+### domserver
+
 The domserver compose file comes bundled with a MariaDB container. If you want
 to use this, you only need to specify a password for the mysql root user and 
 for the domjudge user by setting `DOMJUDGE_DB_ROOT_PASSWORD` and
@@ -28,15 +30,20 @@ by setting `DOMJUDGE_DB_NAME` and `DOMJUDGE_DB_USER`.
 
 You can also specify a timezone by setting the `TIMEZONE` variable.
 
+### judgehost
+
 As for the judgehost, you need to run the container in privileged mode to use
 cgroups. You also need to specify the domserver URL and judgehost user password
 by setting `DOMSERVER_HOST`, `DOMSERVER_PASSWORD`. You can set `DOMJUDGE_USER`
 as well, but it defaults to `judgehost`. You should also specify a hostname for
-this container to identify it in the domserver. If you want to support more
-programming languages, you need to edit `judgehost/languages` to specify the
-(Debian) packages to download. You also need to specify the following kernel
-parameters on the container host for cgroups: `cgroup_enable=memory
-swapaccount=1`.
+this container to identify it in the domserver.
+
+If you want to support more programming languages, you need to edit
+`judgehost/languages` to enable/disable languages. If a language you want isn't
+listed, feel free to create an issue or submit a pull request!
+
+You also need to specify the following kernel parameters on the container host
+for cgroups: `cgroup_enable=memory swapaccount=1`.
 
 Patches
 -------
