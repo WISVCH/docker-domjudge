@@ -14,6 +14,10 @@ fi
 
 
 printf "dummy:%s:%s:%s:%s\n" $DOMJUDGE_DB_HOST $DOMJUDGE_DB_NAME $DOMJUDGE_DB_USER $DOMJUDGE_DB_PASSWORD > /opt/domjudge/domserver/etc/dbpasswords.secret
+sed -i "s/database_host: .*/database_host: ${DOMJUDGE_DB_HOST}/" /opt/domjudge/domserver/webapp/app/config/parameters.yml
+sed -i "s/database_name: .*/database_name: ${DOMJUDGE_DB_NAME}/" /opt/domjudge/domserver/webapp/app/config/parameters.yml
+sed -i "s/database_user: .*/database_user: ${DOMJUDGE_DB_USER}/" /opt/domjudge/domserver/webapp/app/config/parameters.yml
+sed -i "s/database_password: .*/database_password: ${DOMJUDGE_DB_PASSWORD}/" /opt/domjudge/domserver/webapp/app/config/parameters.yml
 
 while ! 6<>/dev/tcp/$DOMJUDGE_DB_HOST/3306; do
 	echo "Waiting for MySQL server to come online"

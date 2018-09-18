@@ -3,6 +3,8 @@ services:
     judgehost:
         build: ./judgehost
         hostname: judgehost01
+        volumes:
+            - /sys/fs/cgroup:/sys/fs/cgroup:ro
         privileged: true
         env_file:
             - judgehost.env

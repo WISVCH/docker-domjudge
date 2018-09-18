@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-: "${DOMSERVER_HOST:=http://domserver/api}"
+: "${DOMSERVER_HOST:=http://domserver}"
+DOMSERVER_URL="${DOMSERVER_HOST}/api/v4"
 : "${DOMSERVER_USER:=judgehost}"
 
 if [ -z "$DOMSERVER_PASSWORD" ]; then
@@ -9,7 +10,7 @@ if [ -z "$DOMSERVER_PASSWORD" ]; then
 	exit 1
 fi
 
-printf "default\t%s\t%s\t%s\n" $DOMSERVER_HOST $DOMSERVER_USER $DOMSERVER_PASSWORD > /opt/domjudge/judgehost/etc/restapi.secret
+printf "default\t%s\t%s\t%s\n" $DOMSERVER_URL $DOMSERVER_USER $DOMSERVER_PASSWORD > /opt/domjudge/judgehost/etc/restapi.secret
 
 /opt/domjudge/judgehost/bin/create_cgroups
 exec sudo -u domjudge "$@"

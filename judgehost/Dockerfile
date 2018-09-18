@@ -1,17 +1,15 @@
 FROM debian:stretch as build
 
-ENV DOMJUDGE_VERSION 5.3.2
+ENV DOMJUDGE_VERSION 6.0.0
 
 ENV BUILDDEPS "make curl autoconf automake patch gcc g++ ca-certificates libcgroup-dev unzip \
-	php php-cli php-curl php-gmp php-mcrypt php-mysql php-mbstring"
+	php php-cli php-curl php-gmp php-mcrypt php-mysql php-mbstring php-dom composer"
 
 COPY patches /tmp/patches
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS && \
 	cd /tmp && \
-	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-	php composer-setup.php --filename=composer && \
 	groupadd -g 2000 domjudge && \
 	useradd -u 2000 -g 2000 -d / -s /bin/false domjudge && \
 	mkdir -p /src && \
@@ -19,8 +17,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	unzip /src/domjudge-${DOMJUDGE_VERSION}.zip -d /src && \
 	cd /src/domjudge-${DOMJUDGE_VERSION} && \
 	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
-	/tmp/composer install --no-dev && \
-	make configure && /src/domjudge-${DOMJUDGE_VERSION}/configure --with-domjudge-user=domjudge --disable-submitclient && make judgehost && make install-judgehost
+	make configure && make composer-dependencies && /src/domjudge-${DOMJUDGE_VERSION}/configure --with-domjudge-user=domjudge --disable-submitclient && make judgehost && make install-judgehost
 
 FROM debian:stretch
 
@@ -41,8 +38,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	chown -R domjudge judgings lib log run tmp && \
 	cp /opt/domjudge/judgehost/etc/sudoers-domjudge /etc/sudoers.d/ && \
 	chmod 440 /etc/sudoers.d/sudoers-domjudge && visudo -c && \
-	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php && \
-	mkdir /cgroup
+	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php
 
 COPY start.sh /usr/local/bin/start.sh
 
