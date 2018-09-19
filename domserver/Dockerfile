@@ -18,7 +18,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	mv /tmp/apache.conf.in etc/apache.conf.in && \
 	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
 	make configure && make composer-dependencies && \
-	/src/domjudge-${DOMJUDGE_VERSION}/configure --disable-submitclient --disable-doc-build && \
+	./configure --disable-submitclient --disable-doc-build && \
 	make domserver && make install-domserver
 
 FROM debian:stretch
