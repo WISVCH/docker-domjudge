@@ -19,7 +19,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
 	make configure && make composer-dependencies && \
 	./configure --disable-submitclient --disable-doc-build && \
-	make domserver && make install-domserver
+	make domserver && make install-domserver && \
+	cp --remove-destination doc/logos/DOMjudgelogo.png /opt/domjudge/domserver/webapp/web/images/DOMjudgelogo.png
 
 FROM debian:stretch
 
