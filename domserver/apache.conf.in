@@ -11,6 +11,9 @@
 
 # Using HTTP:
 
+ErrorLog /dev/stderr
+TransferLog /dev/stdout
+
 <VirtualHost *>
 ServerName _default_
 DocumentRoot @domserver_webappdir@/web
