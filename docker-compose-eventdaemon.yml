@@ -1,0 +1,11 @@
+version: '3'
+services:
+  eventdaemon:
+        restart: always
+        build: ./domserver
+        env_file:
+            - eventdaemon.env
+            - domserver.env
+        entrypoint: /usr/local/bin/service.sh
+        command: /opt/domjudge/domserver/bin/eventdaemon -C 1
+        
