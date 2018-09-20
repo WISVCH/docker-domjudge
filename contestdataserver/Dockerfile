@@ -20,4 +20,5 @@ COPY server.xml /opt/wlp/usr/servers/cds/server.xml
 ENTRYPOINT ["start.sh"]
 CMD /opt/wlp/bin/server run cds
 COPY photos/ /contest/present/photos
-
+COPY static/ /contest/present/
+COPY assets/ /contest/
