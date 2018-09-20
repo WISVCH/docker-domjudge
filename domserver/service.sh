@@ -4,7 +4,8 @@ set -e
 : "${DOMSERVER_HOST:=http://domserver}"
 # Don't use api version numbers in this url, else you will get state errors.
 DOMSERVER_URL="${DOMSERVER_HOST}/api"
-
+: "${CONTEST_ID:=1}"
+echo "Using Contest id: ${CONTEST_ID}"
 if [ -z "$DOMSERVER_PASSWORD" ]; then
 	echo >&2 "Error: missing DOMSERVER_PASSWORD environment variable"
 	exit 1
