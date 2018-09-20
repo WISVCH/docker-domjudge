@@ -62,8 +62,8 @@ the contest and autojudges, the following steps can be used to get several tools
 *Make sure the contest is created and active*
 
 * create an user for the event feed (e.g. event) with the roles `jury`, `event_reader` and `full_event_reader`
-* update the username and password in the file `eventdaemon.env` 
-* start the event deamon (if your contest id is different then 1 update the `docker-compose-eventdeamon.yml` first to the correct contest id)
+* update the username and password and contest id in the file `eventdaemon.env` 
+* start the event deamon 
 
 		$ docker-compose -f docker-compose-eventdaemon.yml up
 
