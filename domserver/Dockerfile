@@ -45,3 +45,5 @@ COPY apache2-foreground.sh /usr/local/bin/apache2-foreground.sh
 
 ENTRYPOINT ["start.sh"]
 CMD ["apache2-foreground.sh"]
+
+COPY service.sh /usr/local/bin/service.sh

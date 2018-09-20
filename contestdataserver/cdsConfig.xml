@@ -1,0 +1,5 @@
+<cds>
+	<contest location="/contest">
+		<ccs url="contest_url" user="domjudge_user" password="domjudge_password"/>
+	</contest>
+</cds>

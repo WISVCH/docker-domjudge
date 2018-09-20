@@ -1,0 +1,12 @@
+version: '3'
+services:
+    cds:
+        restart: always
+        build: ./contestdataserver
+        ports:
+            - "443:8443"
+        env_file:
+            - cds.env
+            - eventdaemon.env
+
+    
