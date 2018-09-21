@@ -11,6 +11,7 @@ KOTLIN_VERSION=1.2.70
 : "${LANG_PY3:=yes}"
 : "${LANG_KOTLIN:=yes}"
 
+: "${LANG_CSHARP:=no}"
 : "${LANG_HASKELL:=no}"
 : "${LANG_PASCAL:=no}"
 
@@ -43,6 +44,10 @@ install_kotlin() {
 	echo "/opt/kotlinc/bin/kotlin" >> /opt/bins
 }
 
+install_csharp() {
+	DEB_PACKAGES="mono-devel $DEB_PACKAGES"
+}
+
 install_haskell() {
 	DEB_PACKAGES="ghc $DEB_PACKAGES"
 }
@@ -68,6 +73,7 @@ DEB_PACKAGES=""
 [ "$LANG_PY2" = "yes" ] && install_py2
 [ "$LANG_PY3" = "yes" ] && install_py3
 [ "$LANG_KOTLIN" = "yes" ] && install_kotlin
+[ "$LANG_CSHARP" = "yes" ] && install_csharp
 [ "$LANG_HASKELL" = "yes" ] && install_haskell
 [ "$LANG_PASCAL" = "yes" ] && install_pascal
 
