@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-export PATH="$PATH:$(paste -s -d ":" /opt/path)"
-
 : "${DOMSERVER_HOST:=http://domserver}"
 DOMSERVER_URL="${DOMSERVER_HOST}/api/v4"
 : "${DOMSERVER_USER:=judgehost}"
@@ -23,6 +21,10 @@ if echo $id | egrep -q '^[0-9]+$'; then
 else
 	echo >&2 "API response was not a number"
 fi
+
+while read p; do
+	ln -sf $p /usr/local/bin/$(basename $p)
+done < /opt/bins
 
 /opt/domjudge/judgehost/bin/create_cgroups
 exec sudo -u domjudge "$@"

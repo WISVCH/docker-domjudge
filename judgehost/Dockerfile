@@ -36,8 +36,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	chown -R domjudge judgings lib log run tmp && \
 	cp /opt/domjudge/judgehost/etc/sudoers-domjudge /etc/sudoers.d/ && \
 	chmod 440 /etc/sudoers.d/sudoers-domjudge && visudo -c && \
-	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php && \
-	echo "/opt/domjudge/judgehost/bin" >> /opt/path
+	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php
 
 COPY install_languages.sh /tmp/install_languages.sh
 COPY languages /tmp/languages
