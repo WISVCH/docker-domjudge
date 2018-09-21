@@ -39,7 +39,8 @@ install_kotlin() {
 	curl -L -o /tmp/kotlin-compiler.zip https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip
 	unzip /tmp/kotlin-compiler.zip -d /opt
 	rm /tmp/kotlin-compiler.zip
-	echo "/opt/kotlinc/bin" >> /opt/path
+	echo "/opt/kotlinc/bin/kotlinc" >> /opt/bins
+	echo "/opt/kotlinc/bin/kotlin" >> /opt/bins
 }
 
 install_haskell() {

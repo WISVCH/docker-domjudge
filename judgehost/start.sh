@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-export PATH="$PATH:$(paste -s -d ":" /opt/path)"
-
 : "${DOMSERVER_HOST:=http://domserver}"
 DOMSERVER_URL="${DOMSERVER_HOST}/api/v4"
 : "${DOMSERVER_USER:=judgehost}"
@@ -13,6 +11,10 @@ if [ -z "$DOMSERVER_PASSWORD" ]; then
 fi
 
 printf "default\t%s\t%s\t%s\n" $DOMSERVER_URL $DOMSERVER_USER $DOMSERVER_PASSWORD > /opt/domjudge/judgehost/etc/restapi.secret
+
+while read p; do
+	ln -sf $p /usr/local/bin/$(basename $p)
+done < /opt/bins
 
 /opt/domjudge/judgehost/bin/create_cgroups
 exec sudo -u domjudge "$@"
