@@ -28,11 +28,11 @@ install_java() {
 }
 
 install_py2() {
-	DEB_PACKAGES="python $DEB_PACKAGES"
+	DEB_PACKAGES="python pypy $DEB_PACKAGES"
 }
 
 install_py3() {
-	DEB_PACKAGES="python3 $DEB_PACKAGES"
+	DEB_PACKAGES="python3 pypy $DEB_PACKAGES"
 }
 
 install_kotlin() {
