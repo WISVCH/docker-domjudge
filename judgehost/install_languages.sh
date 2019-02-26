@@ -2,7 +2,7 @@
 
 set -eu
 
-KOTLIN_VERSION=1.2.70
+KOTLIN_VERSION=1.3.21
 
 : "${LANG_C:=yes}"
 : "${LANG_CPP:=yes}"
