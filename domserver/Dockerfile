@@ -22,7 +22,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	make domserver && make install-domserver && \
 	cp --remove-destination doc/logos/DOMjudgelogo.png /opt/domjudge/domserver/webapp/web/images/DOMjudgelogo.png
 
-FROM debian:stretch
+FROM debian:stretch as domserver
 
 COPY --from=build /opt/domjudge /opt/domjudge
 
@@ -40,10 +40,23 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 
 EXPOSE 80
 
-COPY start.sh /usr/local/bin/start.sh
+COPY start-domserver.sh /usr/local/bin/start.sh
 COPY apache2-foreground.sh /usr/local/bin/apache2-foreground.sh
 
 ENTRYPOINT ["start.sh"]
 CMD ["apache2-foreground.sh"]
 
-COPY service.sh /usr/local/bin/service.sh
+FROM debian:stretch as eventdaemon
+
+COPY --from=build /opt/domjudge /opt/domjudge
+
+ENV RUNDEPS "curl php php-cli php-curl php-mysql php-json php-mbstring php-dom ca-certificates"
+
+RUN export DEBIAN_FRONTEND=noninteractive && \
+	apt-get update && apt-get install -y --no-install-recommends $RUNDEPS && \
+	apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY start-eventdaemon.sh /usr/local/bin/start.sh
+
+ENTRYPOINT ["start.sh"]
+CMD /opt/domjudge/domserver/bin/eventdaemon -C $CONTEST_ID

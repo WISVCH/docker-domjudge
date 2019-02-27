@@ -1,10 +1,19 @@
-version: '3'
+version: '3.4'
 services:
     domserver:
-        build: ./domserver
+        build:
+            context: ./domserver
+            target: domserver
         ports:
             - "8080:80"
         env_file:
+            - domserver.env
+    eventdaemon:
+        build:
+            context: ./domserver
+            target: eventdaemon
+        env_file:
+            - eventdaemon.env
             - domserver.env
     db:
         image: mariadb
