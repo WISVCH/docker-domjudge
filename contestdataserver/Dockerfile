@@ -31,7 +31,7 @@ COPY users.xml /opt/wlp/usr/servers/cds/users.xml
 COPY cdsConfig.xml /opt/wlp/usr/servers/cds/cdsConfig.xml
 COPY server.xml /opt/wlp/usr/servers/cds/server.xml
 
-EXPOSE 8443
+EXPOSE 443
 
 COPY start.sh /usr/local/bin/start.sh
 

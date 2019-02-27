@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+    eventdaemon:
+        build:
+            context: ./domserver
+            target: eventdaemon
+        env_file:
+            - eventdaemon.env
+            - domserver.env

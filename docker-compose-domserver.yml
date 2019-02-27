@@ -8,13 +8,6 @@ services:
             - "8080:80"
         env_file:
             - domserver.env
-    eventdaemon:
-        build:
-            context: ./domserver
-            target: eventdaemon
-        env_file:
-            - eventdaemon.env
-            - domserver.env
     db:
         image: mariadb
         volumes:
