@@ -10,9 +10,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	curl -L -o /opt/wlp.CDS-${CDS_VERSION}.zip https://icpc.baylor.edu/icpctools/CDS/wlp.CDS-${CDS_VERSION}.zip && \
 	unzip /opt/wlp.CDS-${CDS_VERSION}.zip -d /opt && \
 	curl -l -o /opt/presentations-${PRESENTATION_VERSION}.zip https://icpc.baylor.edu/icpctools/pres/presentations-${PRESENTATION_VERSION}.zip && \
-    unzip /opt/presentations-${PRESENTATION_VERSION}.zip -d /opt && \
-    mkdir -p /contest/present && \
-    cp /opt/presentations-2.0/lib/presentContest.jar /contest/present
+	unzip /opt/presentations-${PRESENTATION_VERSION}.zip -d /opt && \
+	mkdir -p /contest/present && \
+	cp /opt/presentations-2.0/lib/presentContest.jar /contest/present
 
 FROM debian:stretch
 
