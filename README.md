@@ -28,6 +28,12 @@ standalone MySQL server. In that case, you need to specify the
 domjudge user name (both default to `domjudge`) by setting `DOMJUDGE_DB_NAME`
 and `DOMJUDGE_DB_USER`.
 
+For the default admin password, you need to specify `DOMSERVER_ADMIN_PASSWORD`.
+This password is only set on first start, and will not be changed afterwards. 
+
+If you use a reverse proxy, you need to set `DOMJUDGE_TRUSTED_PROXY` to the IP
+or host name of your proxy.
+
 You can also specify a timezone by setting the `TIMEZONE` variable.
 
 ### judgehost
