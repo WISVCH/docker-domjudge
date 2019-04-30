@@ -19,7 +19,8 @@ ServerName _default_
 DocumentRoot @domserver_webappdir@/web
 
 RemoteIPHeader X-Forwarded-For
-RemoteIPInternalProxy main.chipcie
+# Is replaced with sed in start-domserver.sh
+RemoteIPInternalProxy DOMJUDGE_TRUSTED_PROXY
 </VirtualHost>
 
 ### General options ###
@@ -50,7 +51,7 @@ RewriteRule Makefile$ - [F]
 # multiple file submissions.
 
 <IfModule mod_php7.c>
-php_value max_file_uploads    100
+php_value max_file_uploads    256
 php_value upload_max_filesize 128M
 php_value post_max_size       128M
 php_value memory_limit        512M

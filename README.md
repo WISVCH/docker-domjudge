@@ -20,13 +20,13 @@ All environment variables can be set in the relevant `*.env` files.
 ### domserver
 
 The domserver compose file comes bundled with a MariaDB container. If you want
-to use this, you only need to specify a password for the mysql root user and
-for the domjudge user by setting `DOMJUDGE_DB_ROOT_PASSWORD` and
-`MYSQL_ROOT_PASSWORD` to the root password, and `DOMJUDGE_DB_PASSWORD` to the
-domjudge user password. You can also use a standalone MySQL server. In that
-case, you need to specify the `DOMJUDGE_DB_HOST` variable. It is also possible
-to specify a database name and domjudge user name (both default to `domjudge`)
-by setting `DOMJUDGE_DB_NAME` and `DOMJUDGE_DB_USER`.
+to use this, you only need to specify a password for the mysql root user and for
+the domjudge user by setting `MYSQL_ROOT_PASSWORD` to the root password, and
+`DOMJUDGE_DB_PASSWORD` to the domjudge user password. You can also use a
+standalone MySQL server. In that case, you need to specify the
+`DOMJUDGE_DB_HOST` variable. It is also possible to specify a database name and
+domjudge user name (both default to `domjudge`) by setting `DOMJUDGE_DB_NAME`
+and `DOMJUDGE_DB_USER`.
 
 You can also specify a timezone by setting the `TIMEZONE` variable.
 
