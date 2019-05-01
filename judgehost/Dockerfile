@@ -33,7 +33,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	useradd -u 2000 -g 2000 -d / -s /bin/false domjudge && \
 	useradd -d / -U -s /bin/false domjudge-run && \
 	cd /opt/domjudge/judgehost && \
-	chown -R domjudge judgings lib log run tmp && \
+	chown -R domjudge judgings log run tmp && \
 	cp /opt/domjudge/judgehost/etc/sudoers-domjudge /etc/sudoers.d/ && \
 	chmod 440 /etc/sudoers.d/sudoers-domjudge && visudo -c && \
 	sed -i 's/true/false/g' /opt/domjudge/judgehost/etc/judgehost-config.php
