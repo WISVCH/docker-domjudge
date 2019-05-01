@@ -2,8 +2,8 @@ FROM debian:stretch as build
 
 ENV DOMJUDGE_VERSION 7.0.0
 
-ENV BUILDDEPS "make curl autoconf automake patch gcc g++ ca-certificates libcgroup-dev unzip \
-	php php-cli php-curl php-gmp php-mcrypt php-mysql php-mbstring php-dom composer"
+ENV BUILDDEPS "make curl autoconf automake patch gcc g++ ca-certificates libcgroup-dev unzip git \
+	php php-cli php-curl php-gd php-intl php-zip php-gmp php-mcrypt php-mysql php-mbstring php-dom composer"
 
 COPY patches /tmp/patches
 
