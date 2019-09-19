@@ -53,6 +53,6 @@ fi
 
 : "${TIMEZONE:=UTC}"
 
-printf "date.timezone=%s\n" $TIMEZONE > /etc/php/7.0/apache2/conf.d/timezone.ini
+printf "date.timezone=%s\n" $TIMEZONE > /etc/php/7.3/apache2/conf.d/timezone.ini
 
 exec "$@"

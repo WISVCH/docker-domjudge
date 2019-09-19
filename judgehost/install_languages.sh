@@ -2,7 +2,7 @@
 
 set -eu
 
-KOTLIN_VERSION=1.3.21
+KOTLIN_VERSION=1.3.50
 
 : "${LANG_C:=yes}"
 : "${LANG_CPP:=yes}"
@@ -24,7 +24,7 @@ install_cpp() {
 }
 
 install_java() {
-	DEB_PACKAGES="openjdk-8-jdk-headless $DEB_PACKAGES"
+	DEB_PACKAGES="openjdk-11-jdk-headless $DEB_PACKAGES"
 }
 
 install_py2() {

@@ -1,9 +1,9 @@
-FROM debian:stretch as build
+FROM debian:buster as build
 
-ENV DOMJUDGE_VERSION 7.0.0
+ENV DOMJUDGE_VERSION 7.0.3
 
 ENV BUILDDEPS "make curl autoconf automake patch gcc g++ ca-certificates libcgroup-dev unzip git \
-	php php-cli php-curl php-gd php-intl php-zip php-gmp php-mcrypt php-mysql php-mbstring php-dom composer"
+	php php-cli php-curl php-gd php-intl php-zip php-gmp php-mysql php-mbstring php-dom composer"
 
 COPY patches /tmp/patches
 
@@ -19,7 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 	for patch in /tmp/patches/*.patch; do patch -p1 -i $patch; done && \
 	make configure && make composer-dependencies && /src/domjudge-${DOMJUDGE_VERSION}/configure --with-domjudge-user=domjudge --disable-submitclient && make judgehost && make install-judgehost
 
-FROM debian:stretch
+FROM debian:buster
 
 ENV RUNDEPS "unzip curl php-cli php-curl php-json procps sudo ca-certificates libcgroup-dev"
 
