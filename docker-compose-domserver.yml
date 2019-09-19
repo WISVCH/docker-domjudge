@@ -13,8 +13,8 @@ services:
         restart: always
         image: mariadb
         volumes:
-            - ./db:/etc/mysql/conf.d
-            - /var/lib/containers/domjudge_db:/var/lib/mysql
+            - ./db_conf:/etc/mysql/conf.d
+            - ./db_data:/var/lib/mysql
         env_file:
             - domserver.env
     phpmyadmin:
