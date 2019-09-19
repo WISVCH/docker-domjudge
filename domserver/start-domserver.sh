@@ -1,5 +1,5 @@
 #!/bin/bash
-set -xe
+set -e
 
 : "${DOMJUDGE_DB_HOST:=db}"
 : "${DOMJUDGE_DB_USER:=domjudge}"
