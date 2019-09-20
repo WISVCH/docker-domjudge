@@ -3,7 +3,6 @@ services:
     cds:
         build: ./contestdataserver
         ports:
-            - "8481:443"
+            - "8080:8080"
         env_file:
             - cds.env
-            - eventdaemon.env

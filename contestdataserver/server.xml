@@ -38,6 +38,6 @@
 
     <include location="users.xml"/>
 
-    <jndiEntry jndiName="acmicpc.cds.config" value="cdsConfig.xml"/>
     <jndiEntry jndiName="acmicpc.cds.test" value="/contest"/>
+	<jndiEntry jndiName="icpc.cds.config" value="${server.config.dir}/config"/>
 </server>

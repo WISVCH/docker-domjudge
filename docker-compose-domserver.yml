@@ -1,9 +1,7 @@
 version: '3.4'
 services:
     domserver:
-        build:
-            context: ./domserver
-            target: domserver
+        build: ./domserver
         restart: always
         ports:
             - "8080:80"

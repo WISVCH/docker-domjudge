@@ -2,7 +2,8 @@
    <!-- Change passwords immediately to secure the contest -->
    <basicRegistry>
       <user name="admin" password="admin_pw"/>
-      <user name="balloon" password="baloon_pw"/>
+	  <user name="presAdmin" password="presadmin_pw"/>
+      <user name="balloon" password="balloon_pw"/>
       <user name="public" password="public_pw"/>
       <user name="presentation" password="presentation_pw"/>
       <user name="myicpc" password="icpc_pw"/>
