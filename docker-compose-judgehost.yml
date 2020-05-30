@@ -1,9 +1,11 @@
 version: '3'
 services:
     judgehost:
-        build: ./judgehost
+#        build: ./judgehost
+        image: domjudge/judgehost-extended:7.2.1 #Needs manual build through build.sh in ./judgehost
         volumes:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         privileged: true
+        hostname: judgehost
         env_file:
             - judgehost.env
