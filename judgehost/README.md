@@ -4,7 +4,7 @@ By setting the enverioment variables in the Dockerfile you can add Python2, Mono
 
 ## Judgehost crashing on TLE for kotlin
 
-The judgehost crashes when a simple kotlin program is executed with time limit exeeded. For example for the default problem hello, submitting
+The judgehost crashes when a  kotlin program is executed with time limit exceeded. For example for the default problem hello, submitting
 
 ```kotlin
 fun main() {
@@ -52,6 +52,6 @@ exec kotlin -Dfile.encoding=UTF-8 -J-XX:+UseSerialGC -J-Xss${MEMSTACK}k -J-Xms${
 
 and replace it with(make sure the paths for kotlin home and the kotlin runner jar are correct for your installation):
 ```shell script
-exec java -Xmx256M -Xms32M -Dfile.encoding=UTF-8 -XX:+UseSerialGC -Xss${MEMSTACK}k -Xms${MEMLIMITJAVA}k -Xmx${MEMLIMITJAVA}k -Dkotlin.home=/usr/local/lib/kotlinc -cp /usr/local/lib/kotlinc/lib/kotlin-runner.jar org.jetbrains.kotlin.runner.Main '$MAINCLASS' "\$@"
+exec java -Dfile.encoding=UTF-8 -XX:+UseSerialGC -Xss${MEMSTACK}k -Xms${MEMLIMITJAVA}k -Xmx${MEMLIMITJAVA}k -Dkotlin.home=/usr/local/lib/kotlinc -cp /usr/local/lib/kotlinc/lib/kotlin-runner.jar org.jetbrains.kotlin.runner.Main '$MAINCLASS' "\$@"
 ```
 
