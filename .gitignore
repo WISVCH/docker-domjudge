@@ -1,2 +1,4 @@
 *.env
 db_data
+kotlin-compiler.zip
+kotlinc/
