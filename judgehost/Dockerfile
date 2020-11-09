@@ -8,6 +8,6 @@ ENV LANG_CSHARP=yes
 ENV LANG_PY2=no
 ENV CHROOT=/chroot/domjudge
 COPY install_languages.sh /
-ARG KOTLIN_VERSION=1.3.72
+ARG KOTLIN_VERSION=1.4.10
 COPY --chown=domjudge:domjudge kotlinc /usr/local/lib/kotlinc
 
