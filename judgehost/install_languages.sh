@@ -21,7 +21,6 @@ install_kotlin() {
 	rm  ${CHROOT}/usr/local/lib/kotlinc/lib/kotlin-test*.jar
 	rm  ${CHROOT}/usr/local/lib/kotlinc/lib/kotlin-annotation*.jar
 	rm  ${CHROOT}/usr/local/lib/kotlinc/lib/android*.jar
-	rm  ${CHROOT}/usr/local/lib/kotlinc/lib/ktor*.jar
 	rm  ${CHROOT}/usr/local/lib/kotlinc/lib/*compiler*.jar
 	rm  ${CHROOT}/usr/local/lib/kotlinc/lib/js*.jar
 	/opt/domjudge/judgehost/bin/dj_run_chroot "ln -s /usr/local/lib/kotlinc/bin/kotlin /usr/bin/kotlin && ln -s /usr/local/lib/kotlinc/bin/kotlinc /usr/bin/kotlinc"
