@@ -1,6 +1,6 @@
 #!/bin/bash -e
 DEFAULT_VERSION=7.3.0
-KOTLIN_VERSION=1.3.72
+KOTLIN_VERSION=1.4.10
 VERSION=$1
 if [[ -z ${VERSION} ]]
 then
