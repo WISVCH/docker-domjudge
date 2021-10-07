@@ -4,7 +4,7 @@ set -eu
 
 install_pypy3() {
 	DEB_PACKAGES="python3 pypy3 $DEB_PACKAGES"
-	CHROOT_PACKAGES="python3 $DEB_PACKAGES"
+	CHROOT_PACKAGES="python3 pypy3 $DEB_PACKAGES"
 }
 
 
