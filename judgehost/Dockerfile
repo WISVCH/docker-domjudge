@@ -5,7 +5,7 @@ ENV LANG_KOTLIN=yes
 # Only used for company teams
 ENV LANG_CSHARP=yes
 # Python 2 is no longer an ICPC language
-ENV LANG_PY2=no
+ENV LANG_PYPY3=yes
 ENV CHROOT=/chroot/domjudge
 COPY install_languages.sh /
 ARG KOTLIN_VERSION=1.5.31
