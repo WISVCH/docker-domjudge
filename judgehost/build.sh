@@ -1,4 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash
+
+set -e
+
 DEFAULT_VERSION=7.3.3
 KOTLIN_VERSION=1.5.31
 VERSION=$1
