@@ -2,9 +2,9 @@
 
 set -eu
 
-install_py2() {
-	DEB_PACKAGES="python pypy $DEB_PACKAGES"
-	CHROOT_PACKAGES="python $DEB_PACKAGES"
+install_pypy3() {
+	DEB_PACKAGES="python3 pypy3 $DEB_PACKAGES"
+	CHROOT_PACKAGES="python3 pypy3 $DEB_PACKAGES"
 }
 
 
@@ -52,7 +52,7 @@ install_debs() {
 
 DEB_PACKAGES=""
 CHROOT_PACKAGES=""
-[ "$LANG_PY2" = "yes" ] && install_py2
+[ "$LANG_PYPY3" = "yes" ] && install_pypy3
 [ "$LANG_CSHARP" = "yes" ] && install_csharp
 [ "$LANG_KOTLIN" = "yes" ] && install_kotlin
 
