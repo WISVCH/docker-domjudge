@@ -2,6 +2,18 @@
 
 set -eu
 
+install_c() {
+	DEB_PACKAGES="gcc $DEB_PACKAGES"
+}
+
+install_cpp() {
+	DEB_PACKAGES="g++ $DEB_PACKAGES"
+}
+
+install_java() {
+	DEB_PACKAGES="openjdk-11-jdk-headless $DEB_PACKAGES"
+}
+
 install_pypy3() {
 	DEB_PACKAGES="python3 pypy3 $DEB_PACKAGES"
 	CHROOT_PACKAGES="python3 pypy3 $DEB_PACKAGES"
@@ -52,6 +64,9 @@ install_debs() {
 
 DEB_PACKAGES=""
 CHROOT_PACKAGES=""
+install_c
+install_cpp
+install_java
 install_pypy3
 install_csharp
 install_kotlin
