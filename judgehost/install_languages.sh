@@ -59,6 +59,7 @@ install_kotlin
 # Enable networking in chroot
 mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolve.conf.bak
 cp /etc/resolv.conf ${CHROOT}/etc
+cp /etc/apt/sources.list ${CHROOT}/etc/apt/sources.list
 
 [ "$DEB_PACKAGES" != "" ] && install_debs
 

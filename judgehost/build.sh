@@ -19,6 +19,7 @@ if [ ! -d kotlinc ]; then
   curl -o kotlin-compiler.zip -L https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip
   unzip  kotlin-compiler.zip
 fi
+
 # To add packages in chroot we need to run in privileged mode and this can't be done in a docker file.
 docker build -t domjudge/judgehost-extended:${VERSION}-build -f Dockerfile  --build-arg VERSION=${VERSION} .
 docker rm -f domjudge-judgehost-extended-${VERSION}-build 2>&1 || true
