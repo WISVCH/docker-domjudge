@@ -4,7 +4,7 @@ set -eu
 
 install_pypy3() {
 	DEB_PACKAGES="python3 pypy3 $DEB_PACKAGES"
-	CHROOT_PACKAGES="python3 pypy3 $DEB_PACKAGES"
+	CHROOT_PACKAGES="python3 $DEB_PACKAGES"
 }
 
 
@@ -52,9 +52,9 @@ install_debs() {
 
 DEB_PACKAGES=""
 CHROOT_PACKAGES=""
-[ "$LANG_PYPY3" = "yes" ] && install_pypy3
-[ "$LANG_CSHARP" = "yes" ] && install_csharp
-[ "$LANG_KOTLIN" = "yes" ] && install_kotlin
+install_pypy3
+install_csharp
+install_kotlin
 
 # Enable networking in chroot
 mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolve.conf.bak
