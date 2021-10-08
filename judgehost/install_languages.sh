@@ -2,6 +2,11 @@
 
 set -eu
 
+# These packages will be installed in the root of the container (build-time dependencies).
+DEB_PACKAGES=""
+# These packages will be installed in the chroot (run-time dependencies).
+CHROOT_PACKAGES=""
+
 install_c() {
 	DEB_PACKAGES="gcc $DEB_PACKAGES"
 }
@@ -12,11 +17,12 @@ install_cpp() {
 
 install_java() {
 	DEB_PACKAGES="openjdk-11-jdk-headless $DEB_PACKAGES"
+	CHROOT_PACKAGES="openjdk-11-jre-headless $CHROOT_PACKAGES"
 }
 
 install_pypy3() {
 	DEB_PACKAGES="python3 pypy3 $DEB_PACKAGES"
-	CHROOT_PACKAGES="python3 pypy3 $DEB_PACKAGES"
+	CHROOT_PACKAGES="python3 pypy3 $CHROOT_PACKAGES"
 }
 
 
@@ -40,7 +46,7 @@ install_kotlin() {
 
 install_csharp() {
 	DEB_PACKAGES="mono-devel $DEB_PACKAGES"
-	CHROOT_PACKAGES="mono-runtime $DEB_PACKAGES"
+	CHROOT_PACKAGES="mono-runtime $CHROOT_PACKAGES"
 }
 
 
@@ -62,8 +68,6 @@ install_debs() {
 	rm -rf /tmp/*
 }
 
-DEB_PACKAGES=""
-CHROOT_PACKAGES=""
 install_c
 install_cpp
 install_java
