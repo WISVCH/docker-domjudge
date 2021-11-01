@@ -1,13 +1,14 @@
 # Note that the languages C,C++, Python3, Java, Haskel and Pascal are installed in the main image
-ARG VERSION=7.2.1
+ARG VERSION=7.3.0
 FROM domjudge/judgehost:${VERSION}
 ENV LANG_KOTLIN=yes
 # Only used for company teams
 ENV LANG_CSHARP=yes
 # Python 2 is no longer an ICPC language
 ENV LANG_PY2=no
+ENV LANG_PYPY3=yes
 ENV CHROOT=/chroot/domjudge
 COPY install_languages.sh /
-ARG KOTLIN_VERSION=1.3.72
+ARG KOTLIN_VERSION=1.4.10
 COPY --chown=domjudge:domjudge kotlinc /usr/local/lib/kotlinc
 
