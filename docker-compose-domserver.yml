@@ -1,7 +1,7 @@
 version: '3.4'
 services:
     domserver:
-        build: ./domserver
+        image: domjudge/domserver:7.2.1
         restart: always
         ports:
             - "8080:80"
