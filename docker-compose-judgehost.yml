@@ -1,8 +1,8 @@
-version: '3'
+version: '3.4'
 services:
     judgehost:
 #        build: ./judgehost
-        image: domjudge/judgehost-extended:7.2.1 #Needs manual build through build.sh in ./judgehost
+        image: domjudge/judgehost-extended:7.3.3 #Needs manual build through build.sh in ./judgehost
         volumes:
             - /sys/fs/cgroup:/sys/fs/cgroup:ro
         privileged: true

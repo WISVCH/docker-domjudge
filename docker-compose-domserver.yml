@@ -1,13 +1,13 @@
 version: '3.4'
 services:
     domserver:
-        image: domjudge/domserver:7.2.1
+        image: domjudge/domserver:7.3.3
         restart: always
         ports:
             - "8080:80"
         env_file:
             - domserver.env
-    db:
+    mariadb:
         restart: always
         image: mariadb
         volumes:
