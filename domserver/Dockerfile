@@ -6,7 +6,9 @@ ENV BUILDDEPS "gcc g++ make bsdmainutils patch unzip zip \
 	ca-certificates curl autoconf automake libcgroup-dev git \
 	php php-cli php-curl php-gd php-intl php-zip php-gmp php-mysql php-mbstring php-dom composer"
 
-COPY apache.conf.in /tmp/apache.conf.in COPY patches /tmp/patches
+COPY apache.conf.in /tmp/apache.conf.in
+
+COPY patches /tmp/patches
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && apt-get install -y --no-install-recommends $BUILDDEPS && \

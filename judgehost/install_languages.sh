@@ -25,6 +25,11 @@ install_pypy3() {
 	CHROOT_PACKAGES="python3 pypy3 $CHROOT_PACKAGES"
 }
 
+install_pypy3() {
+	DEB_PACKAGES="pypy3 $DEB_PACKAGES"
+	CHROOT_PACKAGES="pypy3 $DEB_PACKAGES"
+}
+
 
 install_kotlin() {
   # Package is downloaded and unzipped by docker file, just create links for path
@@ -71,9 +76,9 @@ install_debs() {
 install_c
 install_cpp
 install_java
-install_pypy3
-install_csharp
-install_kotlin
+[ "$LANG_PYPY3" = "yes" ] && install_pypy3
+[ "$LANG_CSHARP" = "yes" ] && install_csharp
+[ "$LANG_KOTLIN" = "yes" ] && install_kotlin
 
 # Enable networking in chroot
 mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolve.conf.bak

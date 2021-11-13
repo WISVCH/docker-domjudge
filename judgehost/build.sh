@@ -5,7 +5,7 @@ set -e
 DEFAULT_VERSION=7.3.3
 KOTLIN_VERSION=1.5.31
 VERSION=$1
-if [[ -z ${VERSION} ]]
+if [ -z ${VERSION} ]
 then
   echo "Falling back to default version $DEFAULT_VERSION"
 	echo "Usage: $0 domjudge-version"
