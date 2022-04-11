@@ -1,8 +1,13 @@
-version: '3.4'
+version: "3"
+
 services:
-    cds:
-        build: ./contestdataserver
-        ports:
-            - "8085:8443"
-        env_file:
-            - cds.env
+  cds:
+    image: icpctools/cds:2.5.737
+    restart: always
+    ports:
+      - "8083:8080"
+      - "8443:8443"
+    volumes:
+      - ${PWD}/cds/users.xml:/opt/wlp/usr/servers/cds/users.xml
+      - ${PWD}/cds/cdsConfig.xml:/opt/wlp/usr/servers/cds/config/cdsConfig.xml
+      - ${PWD}/cds/contest:/contest
