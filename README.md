@@ -9,7 +9,7 @@ Usage
 
 Use Docker Compose to build the images:
 
-	$ docker-compose -f docker-compose-domserver.yml up --build
+	$ docker-compose -f docker-compose-domserver.yml up
 	$ docker-compose -f docker-compose-judgehost.yml up --build
 
 You may want to edit `domserver/apache.conf.in` to enable TLS or tweak the PHP
@@ -22,19 +22,16 @@ All environment variables can be set in the relevant `*.env` files.
 The domserver compose file comes bundled with a MariaDB container. If you want
 to use this, you only need to specify a password for the mysql root user and for
 the domjudge user by setting `MYSQL_ROOT_PASSWORD` to the root password, and
-`DOMJUDGE_DB_PASSWORD` to the domjudge user password. You can also use a
+`MYSQL_PASSWORD` to the domjudge user password. You can also use a
 standalone MySQL server. In that case, you need to specify the
-`DOMJUDGE_DB_HOST` variable. It is also possible to specify a database name and
-domjudge user name (both default to `domjudge`) by setting `DOMJUDGE_DB_NAME`
-and `DOMJUDGE_DB_USER`.
+`MYSQL_HOST` variable. It is also possible to specify a database name and
+domjudge user name (both default to `domjudge`) by setting `MYSQL_DATABASE`
+and `MYSQL_USER`.
 
-For the default admin password, you need to specify `DOMSERVER_ADMIN_PASSWORD`.
-This password is only set on first start, and will not be changed afterwards. 
-
-If you use a reverse proxy, you need to set `DOMJUDGE_TRUSTED_PROXY` to the IP
+If you use a reverse proxy, you need to set `TRUSTED_PROXIES` to the IP
 or host name of your proxy.
 
-You can also specify a timezone by setting the `TIMEZONE` variable.
+You can also specify a timezone by setting the `CONTAINER_TIMEZONE` variable.
 
 ### judgehost
 
@@ -96,7 +93,7 @@ following command to the connect to the cds.
 		$ ./client.sh <clientName> https://<cds-host>/api/contests/<contest-id> presentation <presentation-password>
 
 Setting up the Resolver with custom places
------------------------------------------- 
+------------------------------------------
 Download the latest version of the Resolver and unzip the file. Generate the
 standing by running the `awards` script and connect to your cds using the
 url `https://<cds-host>/api/contests/<contest-id>` with the `admin` account.

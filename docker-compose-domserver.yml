@@ -1,24 +1,34 @@
-version: '3.4'
+version: "3"
+
 services:
-    domserver:
-        image: domjudge/domserver:7.3.4
-        restart: always
-        ports:
-            - "8080:80"
-        env_file:
-            - domserver.env
-    mariadb:
-        restart: always
-        image: mariadb
-        volumes:
-            - ./db_conf:/etc/mysql/conf.d
-            - ./db_data:/var/lib/mysql
-        env_file:
-            - domserver.env
-    phpmyadmin:
-        restart: always
-        image: phpmyadmin/phpmyadmin
-        ports:
-            - "8081:80"
-        env_file:
-            - domserver.env
+  domserver:
+    image: ghcr.io/wisvch/domjudge-packaging/domserver:8.0.0
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - mariadb
+    env_file:
+        - domserver.env
+    links:
+      - "mariadb:mariadb"
+
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - "13306:3306"
+    env_file:
+        - domserver.env
+    command: --max-connections=1000
+
+  phpmyadmin:
+    restart: always
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - "8081:80"
+    depends_on:
+      - mariadb
+    env_file:
+        - domserver.env
+    links:
+      - "mariadb:db"
