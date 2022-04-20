@@ -8,6 +8,6 @@ services:
       - "8083:8080"
       - "8443:8443"
     volumes:
-      - ${PWD}/cds/users.xml:/opt/wlp/usr/servers/cds/users.xml
       - ${PWD}/cds/cdsConfig.xml:/opt/wlp/usr/servers/cds/config/cdsConfig.xml
+      - ${PWD}/cds/accounts.json:/opt/wlp/usr/servers/cds/config/accounts.json
       - ${PWD}/cds/contest:/contest
