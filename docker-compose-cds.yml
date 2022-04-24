@@ -2,12 +2,12 @@ version: "3"
 
 services:
   cds:
-    image: icpctools/cds:2.5.737
+    image: icpctools/cds:2.5.751
     restart: always
     ports:
       - "8083:8080"
       - "8443:8443"
     volumes:
       - ${PWD}/cds/cdsConfig.xml:/opt/wlp/usr/servers/cds/config/cdsConfig.xml
-      - ${PWD}/cds/accounts.json:/opt/wlp/usr/servers/cds/config/accounts.json
+      - ${PWD}/cds/accounts.yaml:/opt/wlp/usr/servers/cds/config/accounts.yaml
       - ${PWD}/cds/contest:/contest
