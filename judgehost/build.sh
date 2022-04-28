@@ -3,7 +3,6 @@
 set -e
 
 DEFAULT_VERSION=8.0.0
-KOTLIN_VERSION=1.5.31
 VERSION=$1
 if [ -z ${VERSION} ]
 then
@@ -11,13 +10,6 @@ then
 	echo "Usage: $0 domjudge-version"
 	echo "	For example: $0 5.3.0"
 	VERSION=${DEFAULT_VERSION}
-fi
-
-if [ ! -d kotlinc ]; then
-  # cheat so there is no need to install curl and unzip the image and faster when fine tuning
-  echo "Downloading kotlin distribution"
-  curl -o kotlin-compiler.zip -L https://github.com/JetBrains/kotlin/releases/download/v${KOTLIN_VERSION}/kotlin-compiler-${KOTLIN_VERSION}.zip
-  unzip  kotlin-compiler.zip
 fi
 
 # To add packages in chroot we need to run in privileged mode and this can't be done in a docker file.
