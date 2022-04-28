@@ -25,11 +25,6 @@ install_pypy3() {
 	CHROOT_PACKAGES="python3 pypy3 $CHROOT_PACKAGES"
 }
 
-install_pypy3() {
-	DEB_PACKAGES="pypy3 $DEB_PACKAGES"
-	CHROOT_PACKAGES="pypy3 $DEB_PACKAGES"
-}
-
 
 install_kotlin() {
 	echo "deb [trusted=yes] https://pc2.ecs.baylor.edu/apt focal main" >> /etc/apt/sources.list
