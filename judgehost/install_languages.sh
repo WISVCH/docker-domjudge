@@ -16,8 +16,8 @@ install_cpp() {
 }
 
 install_java() {
-	DEB_PACKAGES="openjdk-11-jdk-headless $DEB_PACKAGES"
-	CHROOT_PACKAGES="openjdk-11-jre-headless $CHROOT_PACKAGES"
+	DEB_PACKAGES="openjdk-17-jdk-headless $DEB_PACKAGES"
+	CHROOT_PACKAGES="openjdk-17-jre-headless $CHROOT_PACKAGES"
 }
 
 install_pypy3() {
