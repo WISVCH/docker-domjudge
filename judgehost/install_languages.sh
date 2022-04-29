@@ -8,11 +8,13 @@ DEB_PACKAGES=""
 CHROOT_PACKAGES=""
 
 install_c() {
-	DEB_PACKAGES="gcc $DEB_PACKAGES"
+	DEB_PACKAGES="gcc gcc-9 $DEB_PACKAGES"
+	CHROOT_PACKAGES="gcc gcc-9 $DEB_PACKAGES"
 }
 
 install_cpp() {
-	DEB_PACKAGES="g++ $DEB_PACKAGES"
+	DEB_PACKAGES="g++ g++-9 $DEB_PACKAGES"
+	CHROOT_PACKAGES="g++ g++-9 $DEB_PACKAGES"
 }
 
 install_java() {
