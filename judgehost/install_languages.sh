@@ -8,11 +8,13 @@ DEB_PACKAGES=""
 CHROOT_PACKAGES=""
 
 install_c() {
-	DEB_PACKAGES="gcc $DEB_PACKAGES"
+	DEB_PACKAGES="gcc gcc-9 $DEB_PACKAGES"
+	CHROOT_PACKAGES="gcc gcc-9 $DEB_PACKAGES"
 }
 
 install_cpp() {
-	DEB_PACKAGES="g++ $DEB_PACKAGES"
+	DEB_PACKAGES="g++ g++-9 $DEB_PACKAGES"
+	CHROOT_PACKAGES="g++ g++-9 $DEB_PACKAGES"
 }
 
 install_java() {
@@ -38,8 +40,10 @@ Acquire::https::pc2.ecs.baylor.edu::Verify-Host "false";' >> ${CHROOT}/etc/apt/a
 	ln -s /usr/lib/kotlinc/bin/kotlinc /usr/bin/kotlinc
 	ln -s /usr/lib/kotlinc/bin/kotlin /usr/bin/kotlin
 
-	ln -s ${CHROOT}/usr/lib/kotlinc/bin/kotlinc ${CHROOT}/usr/bin/kotlinc
-	ln -s ${CHROOT}/usr/lib/kotlinc/bin/kotlin ${CHROOT}/usr/bin/kotlin
+	/opt/domjudge/judgehost/bin/dj_run_chroot '
+	ln -s /usr/lib/kotlinc/bin/kotlinc /usr/bin/kotlinc
+	ln -s /usr/lib/kotlinc/bin/kotlin /usr/bin/kotlin
+	'
 
 	DEB_PACKAGES="icpc-kotlinc $DEB_PACKAGES"
 	CHROOT_PACKAGES="icpc-kotlinc $CHROOT_PACKAGES"
@@ -52,19 +56,26 @@ install_csharp() {
 
 
 install_debs() {
-  # execute commands in chroot
-  /opt/domjudge/judgehost/bin/dj_run_chroot "export DEBIAN_FRONTEND=noninteractive &&
-  apt-get update &&
-	apt-get install -y --no-install-recommends --no-install-suggests ${CHROOT_PACKAGES} &&
-	apt-get autoremove -y &&
-	apt-get clean &&
+	apt update && apt install -y software-properties-common gnupg && apt-add-repository -y "deb https://ppa.launchpadcontent.net/pypy/ppa/ubuntu focal main"
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 2862D0785AFACD8C65B23DB0251104D968854915
+	/opt/domjudge/judgehost/bin/dj_run_chroot '
+	apt update && apt install -y software-properties-common gnupg && apt-add-repository -y "deb https://ppa.launchpadcontent.net/pypy/ppa/ubuntu focal main"
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 2862D0785AFACD8C65B23DB0251104D968854915
+	'
+
+	# execute commands in chroot
+	/opt/domjudge/judgehost/bin/dj_run_chroot "export DEBIAN_FRONTEND=noninteractive &&
+	apt update &&
+	apt install -y --no-install-recommends --no-install-suggests ${CHROOT_PACKAGES} &&
+	apt autoremove -y &&
+	apt clean &&
 	rm -rf /var/lib/apt/lists/* &&
 	rm -rf /tmp/*"
 	#execute command on home root
-	apt-get update &&
-	apt-get install -y --no-install-recommends --no-install-suggests ${DEB_PACKAGES} &&
-	apt-get autoremove -y &&
-	apt-get clean &&
+	apt update &&
+	apt install -y --no-install-recommends --no-install-suggests ${DEB_PACKAGES} &&
+	apt autoremove -y &&
+	apt clean &&
 	rm -rf /var/lib/apt/lists/* &&
 	rm -rf /tmp/*
 }
@@ -77,11 +88,11 @@ install_java
 [ "$LANG_KOTLIN" = "yes" ] && install_kotlin
 
 # Enable networking in chroot
-mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolve.conf.bak
+mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolv.conf.bak
 cp /etc/resolv.conf ${CHROOT}/etc
 cp /etc/apt/sources.list ${CHROOT}/etc/apt/sources.list
 
 [ "$DEB_PACKAGES" != "" ] && install_debs
 
 # Restore original state
-mv ${CHROOT}/etc/resolve.conf.bak ${CHROOT}/etc/resolve.conf
+mv ${CHROOT}/etc/resolv.conf.bak ${CHROOT}/etc/resolv.conf
