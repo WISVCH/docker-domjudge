@@ -79,11 +79,11 @@ install_java
 [ "$LANG_KOTLIN" = "yes" ] && install_kotlin
 
 # Enable networking in chroot
-mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolve.conf.bak
+mv ${CHROOT}/etc/resolv.conf ${CHROOT}/etc/resolv.conf.bak
 cp /etc/resolv.conf ${CHROOT}/etc
 cp /etc/apt/sources.list ${CHROOT}/etc/apt/sources.list
 
 [ "$DEB_PACKAGES" != "" ] && install_debs
 
 # Restore original state
-mv ${CHROOT}/etc/resolve.conf.bak ${CHROOT}/etc/resolve.conf
+mv ${CHROOT}/etc/resolv.conf.bak ${CHROOT}/etc/resolv.conf
