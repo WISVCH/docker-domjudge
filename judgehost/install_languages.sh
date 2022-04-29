@@ -54,19 +54,26 @@ install_csharp() {
 
 
 install_debs() {
-  # execute commands in chroot
-  /opt/domjudge/judgehost/bin/dj_run_chroot "export DEBIAN_FRONTEND=noninteractive &&
-  apt-get update &&
-	apt-get install -y --no-install-recommends --no-install-suggests ${CHROOT_PACKAGES} &&
-	apt-get autoremove -y &&
-	apt-get clean &&
+	apt update && apt install -y software-properties-common gnupg && apt-add-repository -y "deb https://ppa.launchpadcontent.net/pypy/ppa/ubuntu focal main"
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 2862D0785AFACD8C65B23DB0251104D968854915
+	/opt/domjudge/judgehost/bin/dj_run_chroot '
+	apt update && apt install -y software-properties-common gnupg && apt-add-repository -y "deb https://ppa.launchpadcontent.net/pypy/ppa/ubuntu focal main"
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 2862D0785AFACD8C65B23DB0251104D968854915
+	'
+
+	# execute commands in chroot
+	/opt/domjudge/judgehost/bin/dj_run_chroot "export DEBIAN_FRONTEND=noninteractive &&
+	apt update &&
+	apt install -y --no-install-recommends --no-install-suggests ${CHROOT_PACKAGES} &&
+	apt autoremove -y &&
+	apt clean &&
 	rm -rf /var/lib/apt/lists/* &&
 	rm -rf /tmp/*"
 	#execute command on home root
-	apt-get update &&
-	apt-get install -y --no-install-recommends --no-install-suggests ${DEB_PACKAGES} &&
-	apt-get autoremove -y &&
-	apt-get clean &&
+	apt update &&
+	apt install -y --no-install-recommends --no-install-suggests ${DEB_PACKAGES} &&
+	apt autoremove -y &&
+	apt clean &&
 	rm -rf /var/lib/apt/lists/* &&
 	rm -rf /tmp/*
 }
