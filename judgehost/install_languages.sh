@@ -40,8 +40,10 @@ Acquire::https::pc2.ecs.baylor.edu::Verify-Host "false";' >> ${CHROOT}/etc/apt/a
 	ln -s /usr/lib/kotlinc/bin/kotlinc /usr/bin/kotlinc
 	ln -s /usr/lib/kotlinc/bin/kotlin /usr/bin/kotlin
 
-	ln -s ${CHROOT}/usr/lib/kotlinc/bin/kotlinc ${CHROOT}/usr/bin/kotlinc
-	ln -s ${CHROOT}/usr/lib/kotlinc/bin/kotlin ${CHROOT}/usr/bin/kotlin
+	/opt/domjudge/judgehost/bin/dj_run_chroot '
+	ln -s /usr/lib/kotlinc/bin/kotlinc /usr/bin/kotlinc
+	ln -s /usr/lib/kotlinc/bin/kotlin /usr/bin/kotlin
+	'
 
 	DEB_PACKAGES="icpc-kotlinc $DEB_PACKAGES"
 	CHROOT_PACKAGES="icpc-kotlinc $CHROOT_PACKAGES"
