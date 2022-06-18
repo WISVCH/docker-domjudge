@@ -3,7 +3,6 @@ version: "3"
 services:
   domserver:
     image: ghcr.io/wisvch/domjudge-packaging/domserver:8.0.0
-    restart: always
     ports:
       - "8080:80"
     depends_on:
@@ -22,7 +21,6 @@ services:
     command: --max-connections=1000
 
   phpmyadmin:
-    restart: always
     image: phpmyadmin/phpmyadmin
     ports:
         - "8081:80"
