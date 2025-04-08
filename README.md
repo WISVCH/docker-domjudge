@@ -1,6 +1,12 @@
 Docker for DOMjudge
 ===================
 
+<ins>__ARCHIVED IN FAVOR OF [DOMJUDGE-MANAGED PACKAGING REPOSITORY](https://github.com/DOMjudge/domjudge-packaging).__</ins>
+
+<ins>__FIND CHIPCIE FORK OF DOMJUDGE-PACKAGING [HERE](https://github.com/WISVCH/domjudge-packaging).__</ins>
+
+
+
 These Dockerfiles allow you to run [DOMjudge](https://www.domjudge.org) inside a
 Docker container.
 
